@@ -1,0 +1,50 @@
+{
+    "security-scan-engine": {   
+        "container_name": "security-scan-engine",
+        "image": "ciedevelop.azurecr.io/msicie/security-scan-engine:1.0.0",
+        "priority": 1,
+        "restart_always": true,
+        "network_parameters": {
+            "network": [{"name": "host"}]
+        },
+        "environment_variables": {
+            "SENDER_EMAIL":"jigar.chudasama@motorolasolutions.com",
+            "SMTP_USER":"jigar.chudasama@motorolasolutions.com",
+            "SMTP_PASS":"your 16 digit app password",
+            "RECIPIENT_EMAIL":"jigar.chudasama@motorolasolutions.com",
+            "SCANS_TO_RUN":"ALL"
+        },
+        "secrets":[
+        ],
+        "labels":{
+            "service_name": "security-scan-engine",
+            "service_author": "cpe"
+        },
+        "mounts": {
+            "volumes": {
+                "shared": [
+                ]
+            }
+        },
+        "podman_args": [
+            "--privileged",
+            "--security-opt label=type:spc_t",
+            "--pid=host",
+            "--ipc=host",
+            "--uts=host",
+            "-v /:/host:rprivate",
+            "-v /sys:/sys:ro",
+            "-v /proc:/proc",
+            "-v /var/lib/rpm:/var/lib/rpm:ro",
+            "-v /boot:/boot:ro",
+            "-v /lib/modules:/lib/modules:ro"
+        ],
+        "restart_settings":{
+            "restart_condition": "on-failure",
+            "restart_attempts": 3,
+            "restart_sec": 5
+        },
+        "limits": {
+        }
+    }
+}
