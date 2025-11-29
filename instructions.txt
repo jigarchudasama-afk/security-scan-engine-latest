@@ -1,0 +1,24 @@
+sudo podman run \
+  --rm \
+  -it \
+  --privileged \
+  --network=host \
+  --pid=host \
+  --ipc=host \
+  --uts=host \
+  --security-opt label=type:spc_t \
+  -v /:/host:rprivate \
+  -v /sys:/sys:ro \
+  -v /proc:/proc \
+  -v /var/lib/rpm:/var/lib/rpm:ro \
+  -v /boot:/boot:ro \
+  -v /lib/modules:/lib/modules:ro \
+  -e SCANS_TO_RUN="STIG" \
+  -e SENDER_EMAIL="jigar.chudasama@motorolasolutions.com" \
+  -e SMTP_USER="jigar.chudasama@motorolasolutions.com" \
+  -e SMTP_PASS="your 16 digit app password" \
+  -e RECIPIENT_EMAIL="jigar.chudasama@motorolasolutions.com" \
+  scans:6.6
+
+spc_t == super privileged container
+there is huge difference between :Z and :z

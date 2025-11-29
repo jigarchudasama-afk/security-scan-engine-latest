@@ -1,0 +1,26 @@
+service config examples:
+
+{
+    "security-scan-engine": {
+        "environment_variables": {
+            "SCANS_TO_RUN":"STIG",
+            "RECIPIENT_EMAIL": "add comma separated email addresses here"
+        }
+    }
+}
+{
+    "security-scan-engine": {
+        "environment_variables": {
+            "SCANS_TO_RUN":"CVE",
+            "RECIPIENT_EMAIL": "add comma separated email addresses here"
+        }
+    }
+}
+{
+    "security-scan-engine": {
+        "environment_variables": {
+            "SCANS_TO_RUN":"ALL",
+            "RECIPIENT_EMAIL": "add comma separated email addresses here"
+        }
+    }
+}
